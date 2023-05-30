@@ -92,8 +92,8 @@ SetTitleMatchMode, 3
 ; ============================== CONFIG ==============================
 ; ====================================================================
 ; appName := "Path of Exile"  ; needs to match game window title exactly
-appName := "Diablo III"       ; needs to match game window title exactly
-; appName := "Diablo IV"      ; needs to match game window title exactly
+; appName := "Diablo III"     ; needs to match game window title exactly
+appName := "Diablo IV"        ; needs to match game window title exactly
 yCorrection := -36            ; moves the coordinate (in pixels) of the center of the screen vertically (- up / + down), allows tweaking the skew of horizontal movement direction
 xOffset := 10000              ; horizontal coordinate of mouse click when moving left or right (it is located outside the screen, but game interprets it as clicking on the edge)
 yOffset := 10000              ; vertical coordinate of mouse click when moving up or down (it is located outside the screen, but game interprets it as clicking on the edge)
