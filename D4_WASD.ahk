@@ -37,11 +37,6 @@ delayPrecision := 25          ; determines how much randomness to add to each cl
 ; =========================== GLOBALS ================================
 ; ====================================================================
 
-wTickTime := 0
-aTickTime := 0
-sTickTime := 0
-dTickTime := 0
-
 WinWaitActive, %appName%
 Sleep 3000
 SoundBeep
