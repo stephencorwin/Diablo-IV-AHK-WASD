@@ -18,30 +18,29 @@ The script allows for player's character control in Diablo IV using popular 'WAS
 - After releasing all directional buttons, LMB click message is sent at the center of the screen to stop the player's avatar.
 
 ### CAVEAT:
-1) Player's character is not located exactly at the center of the screen. It may be necessary to tinker
-  with the value of 'yCorrection' variable, which is translating center of the screen coordinate vertically
-  (positive values translate it down, negative values translate it up). Look for 'CONFIG' section in code.
-2) The game changes the level of camera zoom depending on various circumstances. It may be different
+1. Player's character is not located exactly at the center of the screen. It may be necessary to tinker
+  with the value of `yCorrection` variable, which is translating center of the screen coordinate vertically
+  (positive values translate it down, negative values translate it up.. Look for `CONFIG` section in code.
+1. The game changes the level of camera zoom depending on various circumstances. It may be different
   while exploring, while in town, in buildings, and possibly when fighting world bosses. Different zoom levels
-  will influence player's position relative to the center of the screen, and may therefore cause 'WASD' 
+  will influence player's position relative to the center of the screen, and may therefore cause `WASD` 
   movement to become skewed.
-3) After script detects the game window, you will hear a beep within 3 seconds. The script becomes actively
+1. After script detects the game window, you will hear a beep within 3 seconds. The script becomes actively
   listening after the beep.
-4) Since the script triggers movement by left mouse clicks, it is important to configure the game appropriately,
-  allowing proper synergy between the programs: <br/>
-  a) OPTIONS -> CONTROLS -> GAMEPLAY section: turn off 'Combine Move/Interact/Basic Skill Slot'. <br/>
-  b) Do not bind any skills with left mouse button (otherwise movement instructions will trigger skills
-    if accidentaly aimed at monsters). <br/>
-  c) Bind 'Move' to left mouse button. <br/>
-  d) Unbind anything from W/A/S/D keys. <br/>
+1. Since the script triggers movement by left mouse clicks, it is important to configure the game appropriately, allowing proper synergy between the programs: <br/>
+  a. `OPTIONS -> CONTROLS -> GAMEPLAY` section: turn off `Combine Move/Interact/Basic Skill Slot`. <br/>
+  b. Do not bind any skills with left mouse button (otherwise movement instructions will trigger skills
+    if accidentaly aimed at monsters. <br/>
+  c. Bind `Move` to left mouse button. <br/>
+  d. Unbind anything from `WASD` keys. <br/>
 
-5) You still control the aim of your skills and the direction of evade with your mouse cursor.
-6) Changing game resolution will cause script to loose screen calibration. Reload the script to recalibrate it.
-7) Use 'End' key to pause/resume the script. This will be helpful for using ingame chat without triggering movement.
+1. You still control the aim of your skills and the direction of evade with your mouse cursor.
+1. Changing game resolution will cause script to loose screen calibration. Reload the script to recalibrate it.
+1) Use `End` key to pause/resume the script. This will be helpful for using ingame chat without triggering movement.
   Pausing and resuming the script will trigger quick beep sound to indicate the change of status. 
-8) You can test the script in Diablo III, by changing 'appName' variable. It won't work flawlessly though,
+1) You can test the script in Diablo III by running the `D3_WASD.ahk` script. It won't work flawlessly though,
   as it is impossible to unbind LMB from basic attack or interaction command.
-9) To see the script in action (recorded during DIV beta): https://youtu.be/J-DrzL0N2p0
+1) To see the script in action (recorded during DIV beta): https://youtu.be/J-DrzL0N2p0
 
 ### CAUTION:
 The legality of the script usage in game is debatable. According to Blizzard's EULA, paragraph 1Cii4:
@@ -54,18 +53,16 @@ yet evasive, inconclusive reply. For those reasons, please do note that this scr
 and should not be used in game.
 
 ### INSTALLATION:
-1) Go to https://www.autohotkey.com/ and download the software. The script has been written for version 1.1.
-2) Download the script in .ahk format or copy its contents into .txt file and change the extension manually to .ahk.
-3) Right click script file and chose 'Run Script'. Its icon should show up in the system tray.
-4) Right clicking the tray icon allows to restart, pause or exit the script.
+1. Go to https://www.autohotkey.com/ and download the software. The script has been written for version 1.1.
+1. Download the script in `.ahk` format or copy its contents into `.txt` file and change the extension manually to `.ahk`.
+1. Right click script file and chose `Run Script`. Its icon should show up in the system tray.
+1. Right clicking the tray icon allows to restart, pause or exit the script.
 
 ### POTENTIAL FOR IMPROVEMENT:
-1) Additional randomization for repetitive actions. Randomized delays between clicks, randomized coordinates of
-  click locations.
-2) Smoother transitions between switched directions to give the movement more contoller-like appearance.
+1. Smoother transitions between switched directions to give the movement more contoller-like appearance.
   For example by introducing 8 intermediate directions like N-NE or W-SW that script is triggering in
   quick succession for a short, transitory period of time when the direction of movement changes between main
   directions.
-3) Currently, holding a skill button stops the character. Modification to the script could be introduced, so that
+1. Currently, holding a skill button stops the character. Modification to the script could be introduced, so that
   holding the button would stop the character only for the duration of typical key press (fraction of a second),
   after which the movement would be continued. As long as the button is held, this process would repeat itself.
