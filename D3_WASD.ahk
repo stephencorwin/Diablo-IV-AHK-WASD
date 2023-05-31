@@ -11,7 +11,7 @@ SetTitleMatchMode, 3
 ; ============================== CONFIG ==============================
 ; ====================================================================
 
-appName := "Diablo IV"        ; needs to match game window title exactly
+appName := "Diablo III"       ; needs to match game window title exactly
 
 ; ====================================================================
 
