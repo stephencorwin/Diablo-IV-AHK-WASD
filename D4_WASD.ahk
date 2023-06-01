@@ -22,7 +22,7 @@ xStopOffset := 40             ; amount of pixels from the center of the screen (
 yStopOffset := 30             ; amount of pixels from the center of the screen (vertically), where the click to stop the character occurs
 timerTickTime := 20           ; time interval (in  milliseconds) between each scan of 'WASD' input
 postClickDelay := 100         ; the length of pause (in milliseconds) after each click sent by the script; makes it less spammy, but also less responsive
-moveKey := "L"                ; key used to move the character (L, M, R)
+moveKey := "M"                ; key used to move the character (L, M, R)
 
 ; ====================================================================
 
@@ -62,6 +62,17 @@ scriptPause := false
   scriptPause := !scriptPause
 return
 
+~w::
+~a::
+~s::
+~d::
+  if (scriptPause) {
+    return
+  }
+
+  ;Send, {Shift up}
+return
+
 ~w up::
 ~a up::
 ~s up::
@@ -77,6 +88,7 @@ return
   strButton := StrReplace(A_ThisHotkey, "~", "")
   strButton := StrReplace(strButton, " up", "")
 
+  ;Send, {Shift down}
   Coord := getStopCoord(strButton)
   xTarget := r(Coord.x, stopMovePrecision)
   yTarget := r(Coord.y, stopMovePrecision)
