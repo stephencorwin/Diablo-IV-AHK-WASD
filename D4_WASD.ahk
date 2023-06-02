@@ -13,18 +13,28 @@ SetTitleMatchMode, 3
 
 appName := "Diablo IV"        ; needs to match game window title exactly
 
-; ====================================================================
+; =========================== CALIBRATION ============================
 
 yCorrection := -36            ; moves the coordinate (in pixels) of the center of the screen vertically (- up / + down), allows tweaking the skew of horizontal movement direction
-xOffset := 10000              ; horizontal coordinate of mouse click when moving left or right (it is located outside the screen, but game interprets it as clicking on the edge)
-yOffset := 10000              ; vertical coordinate of mouse click when moving up or down (it is located outside the screen, but game interprets it as clicking on the edge)
+xOffset := 250               ; horizontal coordinate of mouse click when moving left or right (it is located outside the screen, but game interprets it as clicking on the edge)
+yOffset := 250               ; vertical coordinate of mouse click when moving up or down (it is located outside the screen, but game interprets it as clicking on the edge)
 xStopOffset := 40             ; amount of pixels from the center of the screen (horizontally), where the click to stop the character occurs
 yStopOffset := 30             ; amount of pixels from the center of the screen (vertically), where the click to stop the character occurs
 timerTickTime := 20           ; time interval (in  milliseconds) between each scan of 'WASD' input
 postClickDelay := 100         ; the length of pause (in milliseconds) after each click sent by the script; makes it less spammy, but also less responsive
-moveKey := "M"                ; key used to move the character (L, M, R)
 
-; ====================================================================
+; =========================== KEY BINDINGS ===========================
+
+moveKey := "M"                ; key used to move the character (L, M, R)
+abilityKeyBasic := "LButton"  ; key used for the basic abilityKey
+abilityKeyCore := "RButton"   ; key used for the core ability
+abilityKey1 := "q"            ; key used for ability 1
+abilityKey2 := "e"            ; key used for ability 2
+abilityKey3 := "PgDn"         ; key used for ability 3
+abilityKey4 := "Shift"        ; key used for ability 4
+holdKey := "\"                ; key used for holding position while using abilities
+
+; =========================== ANTI-DETECTIONS ========================
 
 movePrecision := 10           ; determines how much randomness to add to each click that is sent
 stopMovePrecision := 10       ; determines how much randomness to add to each stop click that is sent
@@ -62,17 +72,6 @@ scriptPause := false
   scriptPause := !scriptPause
 return
 
-~w::
-~a::
-~s::
-~d::
-  if (scriptPause) {
-    return
-  }
-
-  ;Send, {Shift up}
-return
-
 ~w up::
 ~a up::
 ~s up::
@@ -88,13 +87,11 @@ return
   strButton := StrReplace(A_ThisHotkey, "~", "")
   strButton := StrReplace(strButton, " up", "")
 
-  ;Send, {Shift down}
   Coord := getStopCoord(strButton)
   xTarget := r(Coord.x, stopMovePrecision)
   yTarget := r(Coord.y, stopMovePrecision)
 
   ControlClick, x%xTarget% y%yTarget%, A,, %moveKey%, 1, NA
-  Sleep, r(postClickDelay, delayPrecision)
 return
 
 Main:
@@ -104,6 +101,13 @@ Main:
 
   if (scriptPause) {
     return
+  }
+
+  ; hold position while using abilities
+  if (isPressedAbility()) {
+    Send, {%holdKey% down}
+  } else {
+    Send, {%holdKey% up}
   }
 
   if (!isPressedAny()) {
@@ -172,6 +176,11 @@ isPressed(key) {
 
 isPressedAny() {
   return (isPressed("w") or isPressed("a") or isPressed("s") or isPressed("d"))
+}
+
+isPressedAbility() {
+  Global
+  return (isPressed(abilityKeyBasic) or isPressed(abilityKeyCore) or isPressed(abilityKey1) or isPressed(abilityKey2) or isPressed(3) or isPressed(abilityKey4))
 }
 
 r(num, precision) {
