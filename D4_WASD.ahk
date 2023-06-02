@@ -53,6 +53,7 @@ yCenter := yWin + hWin / 2 + yCorrection
 
 SetTimer, Main, %timerTickTime%
 scriptPause := false
+holdKeyToggled := false
 
 ; ====================================================================
 ; ====================================================================
@@ -105,9 +106,15 @@ Main:
 
   ; hold position while using abilities
   if (isPressedAbility()) {
-    Send, {%holdKey% down}
+    if (!holdKeyToggled) {
+      Send, {%holdKey% down}
+      holdKeyToggled := true
+    }
   } else {
-    Send, {%holdKey% up}
+    if (holdKeyToggled) {
+      Send, {%holdKey% up}
+      holdKeyToggled := false
+    }
   }
 
   if (!isPressedAny()) {
