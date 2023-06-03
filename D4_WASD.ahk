@@ -16,8 +16,8 @@ appName := "Diablo IV"        ; needs to match game window title exactly
 ; =========================== CALIBRATION ============================
 
 yCorrection := -36            ; moves the coordinate (in pixels) of the center of the screen vertically (- up / + down), allows tweaking the skew of horizontal movement direction
-xOffset := 400               ; horizontal coordinate of mouse click when moving left or right (it is located outside the screen, but game interprets it as clicking on the edge)
-yOffset := 400               ; vertical coordinate of mouse click when moving up or down (it is located outside the screen, but game interprets it as clicking on the edge)
+xOffset := 350               ; horizontal coordinate of mouse click when moving left or right (it is located outside the screen, but game interprets it as clicking on the edge)
+yOffset := 350               ; vertical coordinate of mouse click when moving up or down (it is located outside the screen, but game interprets it as clicking on the edge)
 xStopOffset := 40             ; amount of pixels from the center of the screen (horizontally), where the click to stop the character occurs
 yStopOffset := 30             ; amount of pixels from the center of the screen (vertically), where the click to stop the character occurs
 timerTickTime := 20           ; time interval (in  milliseconds) between each scan of 'WASD' input
@@ -191,6 +191,6 @@ isPressedAbility() {
 
 r(num, precision) {
   val := 0
-  Random, val, -precision, precision
+  Random, val, -precision / 2, precision / 2
   return num + val
 }
