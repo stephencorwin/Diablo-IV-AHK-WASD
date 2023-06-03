@@ -62,6 +62,7 @@ holdKeyToggled := false
 #If WinActive(appName)
 
 ~End::
+  holdKeyToggled := false
   if (scriptPause) {
     SoundBeep, 5000, 10
     SetTimer, Main, %timerTickTime%
@@ -105,16 +106,14 @@ Main:
   }
 
   ; hold position while using abilities
-  if (isPressedAbility()) {
-    if (!holdKeyToggled) {
+  if (!holdKeyToggled) {
+    if (isPressedAbility()) {
       Send, {%holdKey% down}
       holdKeyToggled := true
     }
   } else {
-    if (holdKeyToggled) {
-      Send, {%holdKey% up}
-      holdKeyToggled := false
-    }
+    Send, {%holdKey% up}
+    holdKeyToggled := false
   }
 
   if (!isPressedAny()) {
