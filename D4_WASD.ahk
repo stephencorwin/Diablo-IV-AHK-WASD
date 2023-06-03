@@ -112,8 +112,10 @@ Main:
       holdKeyToggled := true
     }
   } else {
-    Send, {%holdKey% up}
-    holdKeyToggled := false
+    if (!isPressedAbility()) {
+      Send, {%holdKey% up}
+      holdKeyToggled := false
+    }
   }
 
   if (!isPressedAny()) {
